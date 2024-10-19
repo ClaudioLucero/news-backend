@@ -26,11 +26,12 @@ MONGODB_URI=mongodb://mongo:27017/newsDB
 NEWS_CATEGORIES=Technology,Health,Sports,Entertainment
 
 
-2. Ejecución Modo local
+
+### 3. Ejecución Modo local
   ```bash
   npm install
 
-3. Con Docker construye y levanta los contenedores
+### 4. Con Docker construye y levanta los contenedores
   ```bash
   docker-compose up --build
 
