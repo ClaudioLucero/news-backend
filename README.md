@@ -1,4 +1,4 @@
-# News Backen
+# News Backend
 
 Este proyecto es una API backend para gestionar noticias. Está construida con Node.js y Express, y se conecta a una base de datos MongoDB.
 
@@ -52,6 +52,24 @@ Todas las rutas están bajo el prefijo `/api/news`.
 - **GET /api/news**: Obtiene todas las noticias.
 - **PUT /api/news/:id**: Edita una noticia existente.
 - **DELETE /api/news/:id**: Elimina una noticia.
+
+## Prueba de la API
+
+```bash│
+http://localhost:3000/api/news
+```
+
+**Crear noticia** (POST):
+
+```json
+{
+  "title": "Título de la noticia",
+  "description": "Descripción detallada de la noticia",
+  "author": "Nombre del autor",
+  "category": "Categoría válida del .env",
+  "imageUrl": "https://linkalaimagen.com/imagen.jpg"
+}
+```
 
 ## Ejemplo de uso
 
