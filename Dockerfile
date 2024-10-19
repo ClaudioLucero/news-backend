@@ -5,10 +5,10 @@ FROM node:19
 WORKDIR /usr/src/app
 
 # Copia package.json y package-lock.json al contenedor
-COPY . .
+COPY package*.json ./
 
 # Instala las dependencias de la aplicación
-RUN npm install 
+RUN npm ci
 
 # Copia el resto de los archivos de la aplicación al contenedor
 COPY . .
