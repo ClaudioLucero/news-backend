@@ -22,6 +22,7 @@ export const createNews = async (req, res) => {
     await newNews.save();
     res.status(201).json(newNews);
   } catch (error) {
+    console.error(error);
     res.status(500).json({ message: 'Error al crear la noticia', error });
   }
 };

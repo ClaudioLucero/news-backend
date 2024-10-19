@@ -20,4 +20,9 @@ router.put('/:id', updateNews);
 // Ruta para eliminar una noticia
 router.delete('/:id', deleteNews);
 
+// Manejar rutas no encontradas
+router.use((req, res) => {
+  res.status(404).json({ message: 'Ruta no encontrada' });
+});
+
 export default router;

@@ -12,6 +12,7 @@ export const deleteNews = async (req, res) => {
 
     res.status(204).json(); // No content
   } catch (error) {
+    console.error(error);
     res.status(500).json({ message: 'Error al eliminar la noticia', error });
   }
 };

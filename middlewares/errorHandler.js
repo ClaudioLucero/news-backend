@@ -1,5 +1,5 @@
 const errorHandler = (err, req, res, next) => {
-  console.error(err.stack);
+  console.error(`Error occurred: ${err.message}`); // Log más específico
 
   // Si el error viene de Mongoose (errores de validación, por ejemplo)
   if (err.name === 'ValidationError') {
@@ -23,7 +23,7 @@ const errorHandler = (err, req, res, next) => {
   res.status(500).json({
     success: false,
     message: 'Server Error',
-    error: err.message,
+    error: 'An unexpected error occurred.', // Mensaje genérico para el cliente
   });
 };
 
