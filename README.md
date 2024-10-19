@@ -67,20 +67,6 @@ http://localhost:3000/api/news
   "description": "Descripción detallada de la noticia",
   "author": "Nombre del autor",
   "category": "Categoría válida del .env",
-  "imageUrl": "https://linkalaimagen.com/imagen.jpg"
-}
-```
-
-## Ejemplo de uso
-
-**Crear noticia** (POST):
-
-```json
-{
-  "title": "Título de la noticia",
-  "description": "Descripción detallada de la noticia",
-  "author": "Nombre del autor",
-  "category": "Categoría válida del .env",
-  "imageUrl": "https://linkalaimagen.com/imagen.jpg"
+  "imageUrl": "https://linkalaimagen.com/imagen.jpg" // Este campo no es obligatorio
 }
 ```
