@@ -1,7 +1,7 @@
 version: '3'
 services:
   backend:
-    build: .
+    build: .  # Esto apunta a la carpeta actual, que es news-backend
     ports:
       - '3000:3000'
     environment:
@@ -10,6 +10,20 @@ services:
       - mongo
     networks:
       - news-network
+
+  frontend:
+    build: ../news-front  # Esto apunta a la carpeta del frontend
+    ports:
+      - '3001:80'
+    environment:
+      - REACT_APP_API_NEWS=http://backend:3000
+    networks:
+      - news-network
+    depends_on:
+      - backend
+    volumes:
+      - ../news-front:/app  # Sincronizar la carpeta del frontend con el contenedor
+      - /app/node_modules  # Para evitar problemas con node_modules
 
   mongo:
     image: mongo

@@ -1,4 +1,4 @@
-const errorHandler = (err, req, res) => {
+const errorHandler = (err, req, res, next) => {
   console.error(err.stack);
 
   // Si el error viene de Mongoose (errores de validación, por ejemplo)
