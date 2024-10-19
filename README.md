@@ -70,3 +70,9 @@ http://localhost:3000/api/news
   "imageUrl": "https://linkalaimagen.com/imagen.jpg" // Este campo no es obligatorio
 }
 ```
+
+## Decisiones de Diseño
+
+-Elección de MongoDB: MongoDB se eligió por su flexibilidad y capacidad de escalar, adaptándose bien a la estructura de datos y cambios. Se optó por incluir más campos en el modelo de noticias para facilitar futuros filtro
+
+-Docker se implementó como una oportunidad para aprender y comprender conceptos de contenerización, dado que anteriormente había utilizado entornos ya configurados. Esto permite un desarrollo y despliegue más consistentes.
