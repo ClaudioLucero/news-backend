@@ -4,7 +4,7 @@ Este proyecto es una API backend para gestionar noticias. Está construida con N
 
 ## Requisitos
 
-- Node.js v19+
+- Node.js v19.9.0+
 - Docker (opcional para ejecución con contenedores)
 
 ## Instalación
