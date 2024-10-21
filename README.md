@@ -26,6 +26,7 @@ NEWS_CATEGORIES=Technology,Health,Sports,Entertainment
 ### 3. Ejecución Modo local
 
 npm install
+npm run dev
 
 ### 4. Con Docker construye y levanta los contenedores
 
