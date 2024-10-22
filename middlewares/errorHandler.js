@@ -1,16 +1,34 @@
 const errorHandler = (err, req, res, next) => {
-  console.error(`Error occurred: ${err.message}`); // Log más específico
+  console.error(`Error occurred: ${err.message}`);
 
-  // Si el error viene de Mongoose (errores de validación, por ejemplo)
+  // Error de validación de Mongoose
   if (err.name === 'ValidationError') {
     return res.status(400).json({
       success: false,
       error: 'Validation Error',
-      details: err.errors,
+      details: err.errors, // Incluir detalles específicos
     });
   }
 
-  // Otros errores, por ejemplo de conexión a la base de datos
+  // Error de clave duplicada en MongoDB (p. ej., cuando se intenta insertar un valor único duplicado)
+  if (err.code === 11000) {
+    return res.status(400).json({
+      success: false,
+      error: 'Duplicate Key Error',
+      message: 'Duplicated field value entered.',
+    });
+  }
+
+  // Error de conversión de tipos en Mongoose (CastError, por ejemplo con ObjectId)
+  if (err.name === 'CastError') {
+    return res.status(400).json({
+      success: false,
+      error: 'Invalid ID Format',
+      message: `Invalid value for ${err.path}: ${err.value}`,
+    });
+  }
+
+  // Otros errores relacionados con MongoDB
   if (err.name === 'MongoError') {
     return res.status(500).json({
       success: false,
@@ -19,12 +37,13 @@ const errorHandler = (err, req, res, next) => {
     });
   }
 
-  // Error genérico para otros casos
+  // Error genérico para el servidor
   res.status(500).json({
     success: false,
-    message: 'Server Error',
-    error: 'An unexpected error occurred.', // Mensaje genérico para el cliente
+    error: 'Server Error',
+    message: 'An unexpected error occurred.', // Mensaje genérico
   });
 };
+
 
 export default errorHandler;
