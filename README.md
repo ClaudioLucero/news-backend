@@ -4,7 +4,7 @@ Este proyecto es una API backend para gestionar noticias. Está construida con N
 
 ## Requisitos
 
-- Node.js v19+
+- Node.js v19.9.0+
 - Docker (opcional para ejecución con contenedores)
 
 ## Instalación
@@ -26,6 +26,7 @@ NEWS_CATEGORIES=Technology,Health,Sports,Entertainment
 ### 3. Ejecución Modo local
 
 npm install
+npm run dev
 
 ### 4. Con Docker construye y levanta los contenedores
 
