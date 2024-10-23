@@ -7,6 +7,7 @@ import mongoSanitize from 'express-mongo-sanitize';
 import rateLimit from 'express-rate-limit';
 import routes from './routes.js';
 import errorHandler from './middlewares/errorHandler.js';
+import apiKeyMiddleware from './middlewares/checkApiKey.js';
 
 dotenv.config();
 const app = express();
@@ -30,6 +31,9 @@ const limiter = rateLimit({
   message: 'Demasiadas solicitudes desde esta IP, por favor intenta de nuevo después de 15 minutos'
 });
 app.use(limiter);
+
+// Aplicar el middleware de API Key antes de las rutas
+app.use(apiKeyMiddleware); // Esto protegerá todas las rutas
 
 app.use(express.json());
 
