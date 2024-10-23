@@ -1,21 +1,22 @@
 import express from 'express';
 import {
   createNews,
-  getAllNews,
+  getNews,
   updateNews,
   deleteNews,
-} from '../controllers/index.js'; // Importar controladores desde el archivo barril
+} from '../controllers/index.js';
+import { validateNews, validateResults } from '../middlewares/validateNews.js'; // Importar el middleware
 
 const router = express.Router();
 
 // Ruta para crear una nueva noticia
-router.post('/', createNews);
+router.post('/', validateNews, validateResults, createNews);
 
 // Ruta para obtener todas las noticias
-router.get('/', getAllNews);
+router.get('/', getNews);
 
 // Ruta para editar una noticia
-router.put('/:id', updateNews);
+router.put('/:id', validateNews, validateResults, updateNews); // Validación para editar
 
 // Ruta para eliminar una noticia
 router.delete('/:id', deleteNews);
