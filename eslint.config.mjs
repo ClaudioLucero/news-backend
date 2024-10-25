@@ -32,4 +32,12 @@ export default [
       'prettier/prettier': ['error'],
     },
   },
+  {
+    // Especificar reglas solo para archivos de test
+    files: ['**/__tests__/**', '**/tests/**'],
+    rules: {
+      'prettier/prettier': 'off', // Desactiva Prettier en tests
+      'no-unused-expressions': 'off', // Permitir chai en tests (si usas chai)
+    },
+  },
 ];
