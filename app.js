@@ -15,7 +15,7 @@ const PORT = process.env.PORT || 3000;
 
 // Seguridad básica, solicitudes desde los dominios listados.
 app.use(cors({
-  origin: ['http://localhost:3000', 'http://localhost:3001', 'https://mi-app-en-produccion.com']
+  origin: ['http://localhost:3000', 'http://localhost:3001', 'http://localhost:3002', 'https://mi-app-en-produccion.com']
 }));
 // Proteger la app con cabeceras de seguridad
 app.use(helmet());

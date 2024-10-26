@@ -8,7 +8,6 @@ export const validateNews = [
     check('category')
         .isIn(process.env.NEWS_CATEGORIES.split(','))
         .withMessage('Invalid category provided'),
-    check('imageUrl').optional().isURL().withMessage('Image URL must be a valid URL'),
 ];
 
 export const validateResults = (req, res, next) => {

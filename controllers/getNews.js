@@ -8,7 +8,7 @@ const categories = process.env.NEWS_CATEGORIES.split(',');
 export const getNews = async (req, res) => {
     try {
         // Obtener parámetros de consulta
-        const { page = 1, limit = 10, sort = 'date', category } = req.query;
+        const { page = 1, limit = 10, sort = 'date_desc', category } = req.query;
 
         // Validación de page y limit
         const pageNumber = parseInt(page, 10);
@@ -22,9 +22,12 @@ export const getNews = async (req, res) => {
             return res.status(400).json({ success: false, message: 'El parámetro "limit" debe ser un número entero positivo.' });
         }
 
-        // Validación de sort
+        // Validación y configuración de sort
         const allowedSortFields = ['date', 'category', 'title', 'author']; // Campos permitidos para ordenar
-        if (!allowedSortFields.includes(sort)) {
+        const sortDirection = sort.endsWith('_asc') ? 1 : -1; // Ascendente para 'asc', descendente para 'desc'
+        const sortField = sort.replace('_asc', '').replace('_desc', ''); // Remover sufijo para obtener el campo
+
+        if (!allowedSortFields.includes(sortField)) {
             return res.status(400).json({ success: false, message: `El parámetro "sort" debe ser uno de los siguientes: ${allowedSortFields.join(', ')}.` });
         }
 
@@ -38,7 +41,7 @@ export const getNews = async (req, res) => {
 
         // Obtener noticias con paginación y ordenación
         const news = await News.find(queryConditions)
-            .sort({ [sort]: -1 }) // Ordenar por fecha (o la propiedad especificada)
+            .sort({ [sortField]: sortDirection }) // Ordenar según el campo y dirección
             .skip((pageNumber - 1) * limitNumber) // Paginación
             .limit(limitNumber); // Límite de resultados
 
