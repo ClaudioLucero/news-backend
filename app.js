@@ -8,52 +8,41 @@ import rateLimit from 'express-rate-limit';
 import routes from './routes.js';
 import errorHandler from './middlewares/errorHandler.js';
 import apiKeyMiddleware from './middlewares/checkApiKey.js';
+import setupSwagger from './swagger.js'; // Importa la configuración de Swagger
 
 dotenv.config();
 const app = express();
 const PORT = process.env.PORT || 3000;
 
-// Seguridad básica, solicitudes desde los dominios listados.
-app.use(cors({
-  origin: ['http://localhost:3000', 'http://localhost:3001', 'http://localhost:3002', 'https://mi-app-en-produccion.com']
-}));
-// Proteger la app con cabeceras de seguridad
+// Configuración de Swagger
+setupSwagger(app); // Configura Swagger
+
+// Seguridad y middlewares
+app.use(cors());
 app.use(helmet());
-// Evita inyecciones de NoSQL
 app.use(mongoSanitize());
-//Evitar que el servidor revele detalles innecesarios sobre las tecnologías que usamos
-app.disable('x-powered-by');
+app.use(express.json());
 
 // Limitar solicitudes
 const limiter = rateLimit({
-  windowMs: 15 * 60 * 1000, // 15 minutos
+  windowMs: 15 * 60 * 1000,
   max: 500,
-  message: 'Demasiadas solicitudes desde esta IP, por favor intenta de nuevo después de 15 minutos'
+  message: 'Demasiadas solicitudes desde esta IP',
 });
 app.use(limiter);
 
-// Aplicar el middleware de API Key antes de las rutas
-app.use(apiKeyMiddleware); // Esto protegerá todas las rutas
-
-app.use(express.json());
+// Middleware de API Key
+app.use(apiKeyMiddleware);
+app.use(routes);
+app.use(errorHandler);
 
 // Conectar a MongoDB
 mongoose.connect(process.env.MONGODB_URI, {
   useNewUrlParser: true,
-  useUnifiedTopology: true
+  useUnifiedTopology: true,
 })
-  .then(() => {
-    console.log('Conectado a MongoDB');
-  })
-  .catch((error) => {
-    console.error('Error al conectar a MongoDB:', error);
-  });
-
-// Usar las rutas
-app.use(routes);
-
-// Usar el middleware de manejo de errores
-app.use(errorHandler);
+  .then(() => console.log('Conectado a MongoDB'))
+  .catch((error) => console.error('Error al conectar a MongoDB:', error));
 
 app.listen(PORT, () => {
   console.log(`Servidor corriendo en http://localhost:${PORT}`);
