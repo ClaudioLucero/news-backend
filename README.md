@@ -90,7 +90,15 @@ Mejoras de Seguridad Implementadas:
 
 Test Unitario con Jest.
 - Documentación con Swagger:
-Local : http://localhost:3000/api-docs/#/
-En Render : https://news-backend-wyxu.onrender.com/api-docs/#/
+ Local : http://localhost:3000/api-docs/#/
+ Render : https://news-backend-wyxu.onrender.com/api-docs/#/
+
 - Despliegue de BBDD en Mongo Atlas.
 - Despliegue de API en Render
+
+## Consideraciones a Mejorar para una V3
+
+- Testing más profundo.
+- Verificar mas detalladamente como se propagan los errores y mensjaes que se informan.
+  
+
