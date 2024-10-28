@@ -26,7 +26,7 @@ app.use(express.json());
 // Limitar solicitudes
 const limiter = rateLimit({
   windowMs: 15 * 60 * 1000,
-  max: 500,
+  max: 1000,
   message: 'Demasiadas solicitudes desde esta IP',
 });
 app.use(limiter);

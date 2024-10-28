@@ -35,7 +35,7 @@ const swaggerOptions = {
             },
         },
     },
-    apis: ['./routes/*.js'], // Asegúrate de que esta ruta sea correcta
+    apis: ['./routes/*.js'],
 };
 
 // Middleware para Swagger

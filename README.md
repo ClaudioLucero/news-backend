@@ -77,3 +77,18 @@ http://localhost:3000/api/news
 -Elección de MongoDB: MongoDB se eligió por su flexibilidad y capacidad de escalar, adaptándose bien a la estructura de datos y cambios. Se optó por incluir más campos en el modelo de noticias para facilitar futuros filtro
 
 -Docker se implementó como una oportunidad para aprender y comprender conceptos de contenerización, dado que anteriormente había utilizado entornos ya configurados. Esto permite un desarrollo y despliegue más consistentes.
+
+## Segunda Versión
+
+Mejoras de Seguridad Implementadas:
+-Control de Acceso Mediante CORS: Se ha configurado el middleware CORS para restringir qué dominios pueden interactuar con la API.
+-Limitación de Tasa de Solicitudes: Se utiliza la librería express-mongo-sanitize para proteger la API contra inyecciones de NoSQL.
+-Cabeceras de Seguridad con Helmet: Desactivación de la cabecera x-powered-by.
+-Manejo de Errores y Respuestas Seguras: Autenticación mediante API Key para proteger las rutas de la API.
+
+Test Unitario con Jest.
+Documentación con Swagger:
+Local : http://localhost:3000/api-docs/#/
+En Render : https://news-backend-wyxu.onrender.com/api-docs/#/
+Despliegue de BBDD en Mongo Atlas.
+Despliegue de API en Render
