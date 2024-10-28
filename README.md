@@ -84,7 +84,8 @@ Mejoras de Seguridad Implementadas:
 - Control de Acceso Mediante CORS: Se ha configurado el middleware CORS para restringir qué dominios pueden interactuar con la API.
 - Limitación de Tasa de Solicitudes: Se utiliza la librería express-mongo-sanitize para proteger la API contra inyecciones de NoSQL.
 - Cabeceras de Seguridad con Helmet: Desactivación de la cabecera x-powered-by.
-- Manejo de Errores y Respuestas Seguras: Autenticación mediante API Key para proteger las rutas de la API.
+- Manejo de Errores y Respuestas Seguras
+- Autenticación mediante API Key para proteger las rutas de la API.
 
 Test Unitario con Jest.
 - Documentación con Swagger:
