@@ -27,7 +27,7 @@ app.disable('x-powered-by');
 // Limitar solicitudes
 const limiter = rateLimit({
   windowMs: 15 * 60 * 1000, // 15 minutos
-  max: 100,
+  max: 500,
   message: 'Demasiadas solicitudes desde esta IP, por favor intenta de nuevo después de 15 minutos'
 });
 app.use(limiter);

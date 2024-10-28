@@ -8,7 +8,7 @@ const categories = process.env.NEWS_CATEGORIES.split(',');
 export const getNews = async (req, res) => {
     try {
         // Obtener parámetros de consulta
-        const { page = 1, limit = 10, sort = 'date_desc', category } = req.query;
+        const { page = 1, limit = 8, sort = 'date_desc', category } = req.query;
 
         // Validación de page y limit
         const pageNumber = parseInt(page, 10);
